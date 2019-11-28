@@ -12,3 +12,29 @@ If the file contains at least one error, your program must display error on the 
 
 All your sources and headers must be in the same folder. You can have
 two different folders, one for the libft and one for fillit.
+
+- pitääkö aluksi tehdä neliölauta jolle mahtuu kaikki palat trimmaamatta?
+- IF \n followed by \n, palikka vaihtuu, jos myös ret == 0 ni tiedoston loppu
+
+
+int		main(int ac, char **av)
+{
+	static char	*aof[4];
+	ssize_t ret;
+	char *temp;
+	char buff[BUFF_SIZE + 1];
+
+	ret = 0;
+	if (ac == 2)
+	{
+		fd = open(av[1], O_RDONLY);
+		while ((ret = read(fd, buff, BUFF_SIZE)))
+		{
+			buff[ret] = '\0';
+			if (aof[fd] != NULL)
+				aof[fd] = ft_strjoin(aof[fd], buff);
+			if (aof[fd] == NULL)
+				aof[fd] = ft_strdup(buff);
+		}
+		return (0);
+}
