@@ -1,0 +1,14 @@
+every Tetrimino must exactly fit in a
+4 by 4 chars square and all Tetrimino are separated by an newline each.
+If the number of parameters sent to your executable is not 1, your program must display
+its usage and exit properly (give info on what is missing)
+
+the smallest is the one at tmost top left corner of the multiple solutions
+trim 12 empties when assembling board
+assign capital letters to # on each piece
+
+If the file contains at least one error, your program must display error on the standard output followed by a newline and have to exit properly.
+
+
+All your sources and headers must be in the same folder. You can have
+two different folders, one for the libft and one for fillit.
