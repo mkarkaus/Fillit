@@ -1,10 +1,10 @@
-#include "fillit.h"
+#include "includes/fillit.h"
 
 int		main(int argc, char **argv)
 {
 	int		fd;
 	char	*file;
-	char	**line;
+	char	*line;
 
 
 	fd = open(argv[1], O_RDONLY);

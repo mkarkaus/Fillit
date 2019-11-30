@@ -13,6 +13,8 @@
 /* might have to save blocks with linked lists */
 /* or with array of array of ints if that exists */
 
+#include "includes/fillit.h"
+
 int		*make_block(char *file)
 {
 	char		*temp;
@@ -22,20 +24,21 @@ int		*make_block(char *file)
 
 	num = 0;
 	i = 0;
+
 	while (file[i])
 	{
-		*file = ft_strchr(file, '#')
+		file = ft_strchr(file, '#');
 		i = 0;
 		while (file[i] != '\n' && file[i + 1] != '\n')
 		{
 			if (file[i] == '#')
 			{
-				arr[b] = i;
-				b++;
+				arr[num] = i;
+				num++;
 			}
 			i++;
 		}
 		*file = *file + i + 2;
 	}
-	return (*arr);
+	return (arr);
 }
