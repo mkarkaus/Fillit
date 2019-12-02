@@ -1,6 +1,6 @@
 echo "too few args and too many args"
 ./fillit
-.fillit hauki on kala
+./fillit hauki on kala
 echo "error checks"
 ./fillit 2in1
 ./fillit bigpc
