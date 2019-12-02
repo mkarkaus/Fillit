@@ -16,14 +16,16 @@ SRC = srcs/*.c
 
 FLAGS = -Wall -Werror -Wextra
 
-HEAD = includes/*.h
+HEAD = includes/fillit.h
+
+ARCH = libft/libft.a
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 
 all: $(NAME)
 
 $(NAME):
-	gcc -c $(FLAGS) $(SRC) $(HEAD)
+	gcc -c $(FLAGS) $(SRC) $(HEAD) $(ARCH)
 	ar rc $(NAME) $(OBJ)
 
 clean:

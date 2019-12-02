@@ -27,7 +27,7 @@ ft_isspace.c get_next_line.c
 
 FLAGS = -Wall -Werror -Wextra
 
-HEAD = libft.h
+HEAD = libft.h get_next_line.h
 
 OBJ = $(patsubst %.c, %.o, $(SRC))
 

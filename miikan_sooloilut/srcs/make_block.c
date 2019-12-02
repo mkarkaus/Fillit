@@ -13,11 +13,10 @@
 /* might have to save blocks with linked lists */
 /* or with array of array of ints if that exists */
 
-#include "includes/fillit.h"
+#include "../includes/fillit.h"
 
 int		*make_block(char *file)
 {
-	char		*temp;
 	size_t		num;
 	size_t		i;
 	int			arr[4];
