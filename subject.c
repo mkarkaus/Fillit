@@ -1,6 +1,16 @@
 
 #include "fillit.h"
 
+char		**ft_trimpc(char *s)
+{
+	int		i;
+
+	while (s[i] != '\0')
+		i++;
+	
+}
+
+
 int		ft_checkpc(char *s)
 {
 	int	i;
@@ -71,11 +81,11 @@ int		ft_readpc(int fd)
 		buff[ret] = '\0';
 		if (ft_checkgrid(buff) == -1)
 			return (-1);
-		pc++;
+		if (++pc > 26)
+			return (-1);
+		ft_trimpc(buff);
 		map = ft_strjoin(map, buff); //or big enough strnew right away?
 	}
-	if (pc > 26)
-		return (-1);
 	return (0);
 }
 
