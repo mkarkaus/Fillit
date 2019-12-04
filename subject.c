@@ -1,3 +1,6 @@
+
+#include "fillit.h"
+
 int		ft_checkpc(char *s)
 {
 	int	i;
@@ -26,6 +29,7 @@ int		ft_checkpc(char *s)
 		return (-1);
 	return (0);
 }
+
 int		ft_checkgrid(char *s)
 {
 	int i;
@@ -44,39 +48,57 @@ int		ft_checkgrid(char *s)
 		i++;
 	}
 	if (h != 4 || d != 12 || s[4] != '\n' || s[9] != '\n' || s[14] != '\n' || 
-			s[19] != '\n' || s[20] != '\n' || s[21] != '\n')
+			s[19] != '\n' || (s[20] != '\n' && s[20] != '\0'))
 		return (-1);
 	if (ft_checkpc(s) == -1)
 		return (-1);
 	return (0);
 }
 
-int		main(int ac, char **av)
+int		ft_readpc(int fd)
 {
 	static char	*map;
-	ssize_t ret;
-	char *temp;
-	char buff[BUFF_SIZE + 1];
-
+	ssize_t 	ret;
+	ssize_t		pc;
+	char 		buff[BUFF_SIZE + 1];
+	
 	ret = 0;
-	if (ac != 2)
-	{
-		write (1, "usage: fillit input_file",)
-		return (0);
-	}
-	fd = open(av[1], O_RDONLY); // next loop will read a piece's worth of chars
-	if (map == NULL && !(map = ft_strnew(0)))
+	pc = 0;
+	if (map == NULL && !(map = ft_strnew(0))) // next loop will read a piece's worth of chars
 		return (-1);
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
 		buff[ret] = '\0';
 		if (ft_checkgrid(buff) == -1)
-		{
-			write(1, "error\n", 6);
-			return (0);
-		}
-		map = ft_strjoin(map. buff); //or big enough strnew right away?
+			return (-1);
+		pc++;
+		map = ft_strjoin(map, buff); //or big enough strnew right away?
 	}
+	if (pc > 26)
+		return (-1);
+	return (0);
+}
+
+int		main(int ac, char **av)
+{
+	// static char	*map;
+	// ssize_t 	ret;
+	int			fd;
+	// char 		buff[BUFF_SIZE + 1];
+
+	if (ac != 2)
+	{
+		write (1, "usage: fillit input_file\n", 26);
+		return (0);
+	}
+	fd = open(av[1], O_RDONLY);
+	if (ft_readpc(fd) == -1)
+	{
+		write(1, "error\n", 6);
+		return (0);
+	}
+
+	write(1, "valid\n", 6);
 	return (0);
 }
 
