@@ -1,15 +1,16 @@
 
 #include "fillit.h"
 
-char		**ft_trimpc(char *s)
-{
-	int		i;
+// t_tetrpc	ft_trimpc(char *s)
+// {
+// 	t_tetrpc	tet;
+// 	int			i;
 
-	while (s[i] != '\0')
-		i++;
+// 	while (s[i] != '#')
+// 		i++;
 	
-}
-
+// 	return (tet);
+// }
 
 int		ft_checkpc(char *s)
 {
@@ -65,54 +66,58 @@ int		ft_checkgrid(char *s)
 	return (0);
 }
 
-int		ft_readpc(int fd)
+char	*ft_readpc(int fd, char **map)
 {
-	static char	*map;
+	char		**board;
 	ssize_t 	ret;
-	ssize_t		pc;
+	int			pc;
 	char 		buff[BUFF_SIZE + 1];
 	
 	ret = 0;
 	pc = 0;
-	if (map == NULL && !(map = ft_strnew(0))) // next loop will read a piece's worth of chars
-		return (-1);
+	map = NULL;
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
 		buff[ret] = '\0';
 		if (ft_checkgrid(buff) == -1)
-			return (-1);
+			return (NULL);
 		if (++pc > 26)
-			return (-1);
-		ft_trimpc(buff);
-		map = ft_strjoin(map, buff); //or big enough strnew right away?
+			return (NULL);
+		printf("%zd\n", ret);
+		write(1, "xaxa\n", 5);
+//		leanpc = ft_trimpc(buff);
 	}
-	return (0);
+	if ((board = ft_sizeboard(pc)) == NULL)
+		return (NULL);
+	return (board[0]);
 }
 
 int		main(int ac, char **av)
 {
-	// static char	*map;
-	// ssize_t 	ret;
+	char	*map;
 	int			fd;
-	// char 		buff[BUFF_SIZE + 1];
 
+	map = NULL;
 	if (ac != 2)
 	{
 		write (1, "usage: fillit input_file\n", 26);
 		return (0);
 	}
 	fd = open(av[1], O_RDONLY);
-	if (ft_readpc(fd) == -1)
+	if (map == NULL && !(map = ft_strnew(0))) // next loop will read a piece's worth of chars
+		return (-1);
+	if (ft_readpc(fd, &map) == NULL)
 	{
 		write(1, "error\n", 6);
 		return (0);
 	}
-
+	// write(1, map, ft_strlen(map));
 	write(1, "valid\n", 6);
+//	while (1); TESTAA VUODOT TAI VAIHTOEHTOISESTI KAYTA system(leaks fillit);
 	return (0);
 }
 
-
+// system function in stdlib system(leaks fillit);
 // every Tetrimino must exactly fit in a
 // 4 by 4 chars square and all Tetrimino are separated by an newline each.
 // If the number of parameters sent to your executable is not 1, your program must display
