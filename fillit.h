@@ -8,18 +8,10 @@
 # include <string.h>
 # include <stdio.h>
 
-// typedef struct	s_list
-// {
-// 	char 			**leanpc;
-// 	int				leveys;
-// 	int 			korkeus;
-// 	struct s_list	*next;
-// };				t_tetrpc;
-
-//t_tetrpc			ft_trim_pc(char *s);
+void			ft_trimpc(char *s, char ****pcs, int pc);
 int				ft_checkgrid(char *s);
 int				ft_checkpc(char *s);
-char			*ft_readpc(int fd, char **map);
+char			**ft_readpc(int fd);
 char			**ft_sizeboard(int pc);
 void			ft_fill_board(char ***board, int w_and_h);
 

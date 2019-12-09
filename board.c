@@ -51,11 +51,11 @@ char	**ft_sizeboard(int pc)
 	}
 	ft_fill_board(&board, w_and_h);
 	k = 0;
-	while (board[k])
-	{
-		printf("%s", board[k]);
-		printf("%c", '\n');
-		k++;
-	}
+	// while (board[k])
+	// {
+	// 	printf("%s", board[k]);
+	// 	printf("%c", '\n');
+	// 	k++;
+	// }
 	return (board);
 }

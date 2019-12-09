@@ -1,17 +1,6 @@
 
 #include "fillit.h"
 
-// t_tetrpc	ft_trimpc(char *s)
-// {
-// 	t_tetrpc	tet;
-// 	int			i;
-
-// 	while (s[i] != '#')
-// 		i++;
-	
-// 	return (tet);
-// }
-
 int		ft_checkpc(char *s)
 {
 	int	i;
@@ -66,16 +55,22 @@ int		ft_checkgrid(char *s)
 	return (0);
 }
 
-char	*ft_readpc(int fd, char **map)
+char	**ft_readpc(int fd)
 {
-	char		**board;
-	ssize_t 	ret;
-	int			pc;
-	char 		buff[BUFF_SIZE + 1];
-	
+	char			**board;
+	static char		***pcs;
+	ssize_t 		ret;
+	int				pc;
+	char 			buff[BUFF_SIZE + 1];
+	int				i;
+	int				k;
+
+	i = 0;
+	k = 0;
 	ret = 0;
 	pc = 0;
-	map = NULL;
+	if (!(pcs = (char ***)malloc(27 * sizeof(char **))))
+		return (NULL);
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
 		buff[ret] = '\0';
@@ -83,36 +78,44 @@ char	*ft_readpc(int fd, char **map)
 			return (NULL);
 		if (++pc > 26)
 			return (NULL);
-		printf("%zd\n", ret);
-		write(1, "xaxa\n", 5);
-//		leanpc = ft_trimpc(buff);
+		ft_trimpc(buff, &pcs, pc);
 	}
 	if ((board = ft_sizeboard(pc)) == NULL)
 		return (NULL);
-	return (board[0]);
+	ft_solver(&board, pcs);
+	// while (pcs[k] != NULL)
+	// {
+	// 	while (pcs[k][i] != '\0')
+	// 	{
+	// 		printf("%s", pcs[k][i]);
+	// 		printf("\n");
+	// 		i++;
+	// 	}
+	// 	i = 0;
+	// 	printf("\n");
+	// 	k++;
+	// }
+	return (board);
 }
 
 int		main(int ac, char **av)
 {
-	char	*map;
 	int			fd;
 
-	map = NULL;
 	if (ac != 2)
 	{
 		write (1, "usage: fillit input_file\n", 26);
 		return (0);
 	}
 	fd = open(av[1], O_RDONLY);
-	if (map == NULL && !(map = ft_strnew(0))) // next loop will read a piece's worth of chars
-		return (-1);
-	if (ft_readpc(fd, &map) == NULL)
+	if (ft_readpc(fd) == NULL)
 	{
 		write(1, "error\n", 6);
 		return (0);
 	}
+	// while (1);
 	// write(1, map, ft_strlen(map));
-	write(1, "valid\n", 6);
+	// write(1, "valid\n", 6);
 //	while (1); TESTAA VUODOT TAI VAIHTOEHTOISESTI KAYTA system(leaks fillit);
 	return (0);
 }
