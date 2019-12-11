@@ -78,23 +78,29 @@ char	**ft_readpc(int fd)
 			return (NULL);
 		if (++pc > 26)
 			return (NULL);
+//		while (1); ei vuoda
 		ft_trimpc(buff, &pcs, pc);
+//		while (1); //vuoto shows if only one piece
 	}
+//	while (1); // leaks by this point
 	if ((board = ft_sizeboard(pc)) == NULL)
 		return (NULL);
-	ft_solver(&board, pcs);
-	// while (pcs[k] != NULL)
-	// {
-	// 	while (pcs[k][i] != '\0')
-	// 	{
-	// 		printf("%s", pcs[k][i]);
-	// 		printf("\n");
-	// 		i++;
-	// 	}
-	// 	i = 0;
-	// 	printf("\n");
-	// 	k++;
-	// }
+	//ft_solver(&board, pcs);
+	while (pcs[k] != NULL)
+	{
+		while (pcs[k][i] != NULL)
+		{
+			printf("%s", pcs[k][i]);
+			printf("\n");
+			i++;
+		}
+		i = 0;
+		printf("\n");
+		if (pcs[k + 1] == NULL)
+			k++;
+		else
+			break;
+	}
 	return (board);
 }
 
@@ -113,8 +119,7 @@ int		main(int ac, char **av)
 		write(1, "error\n", 6);
 		return (0);
 	}
-	// while (1);
-	// write(1, map, ft_strlen(map));
+//	 while (1);
 	// write(1, "valid\n", 6);
 //	while (1); TESTAA VUODOT TAI VAIHTOEHTOISESTI KAYTA system(leaks fillit);
 	return (0);
