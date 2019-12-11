@@ -8,6 +8,8 @@
 # include <string.h>
 # include <stdio.h>
 
+int				ft_solveboard(char ****board, char ***pcs, int row, int col);
+void			ft_solver(char ***board, char ***pcs);
 void			ft_trimpc(char *s, char ****pcs, int pc);
 int				ft_checkgrid(char *s);
 int				ft_checkpc(char *s);

@@ -78,28 +78,32 @@ char	**ft_readpc(int fd)
 			return (NULL);
 		if (++pc > 26)
 			return (NULL);
-//		while (1); ei vuoda
 		ft_trimpc(buff, &pcs, pc);
-//		while (1); //vuoto shows if only one piece
 	}
-//	while (1); // leaks by this point
 	if ((board = ft_sizeboard(pc)) == NULL)
 		return (NULL);
-	//ft_solver(&board, pcs);
+	ft_solver(&board, pcs);
 	while (pcs[k] != NULL)
+	// {
+	// 	while (pcs[k][i] != NULL)
+	// 	{
+	// 		printf("%s", pcs[k][i]);
+	// 		printf("\n");
+	// 		i++;
+	// 	}
+	// 	i = 0;
+	// 	printf("\n");
+	// 	if (pcs[k + 1] != NULL)
+	// 		k++;
+	// 	else
+	// 		break;
+	// }
+
+	while (board[k])
 	{
-		while (pcs[k][i] != NULL)
-		{
-			printf("%s", pcs[k][i]);
-			printf("\n");
-			i++;
-		}
-		i = 0;
-		printf("\n");
-		if (pcs[k + 1] == NULL)
-			k++;
-		else
-			break;
+		printf("%s", board[k]);
+		printf("%c", '\n');
+		k++;
 	}
 	return (board);
 }

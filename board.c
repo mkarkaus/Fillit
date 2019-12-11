@@ -28,7 +28,7 @@ char	**ft_sizeboard(int pc)
 	int		numblock;
 	int		i;
 
-	int		k;
+//	int		k;
 
 	board = NULL;
 	i = 0;
@@ -50,12 +50,5 @@ char	**ft_sizeboard(int pc)
 		i++;
 	}
 	ft_fill_board(&board, w_and_h);
-	k = 0;
-	// while (board[k])
-	// {
-	// 	printf("%s", board[k]);
-	// 	printf("%c", '\n');
-	// 	k++;
-	// }
 	return (board);
 }
