@@ -54,17 +54,19 @@ int		ft_solveboard(char ****board, char ***pcs, int row, int col)
 		if (ft_solveboard(board, pcs + 1, row, col))
 			return (1);
 	}
-	else if (board[row][col + 1] != '\0')
+	else if ((**board)[row][col + 1] != '\0')
 	{
 		printf("merkki etiappai\n");
 		if (ft_solveboard(board, pcs, row, col + 1))
 			return (1);
 	}
-	// else if (board[row][col] == '\0')
+	// else if ((**board)[row][col + 1] == '\0')
 	// {
-		// printf("rivi etiappai\n");
+		printf("rivi etiappai\n");
 		if (ft_solveboard(board, pcs, row + 1, 0))
 			return (1);
+	// 	else
+	// 		**board = ft_sizeboard(0);
 	// }
 	return (0);// isompi lauta
 }
