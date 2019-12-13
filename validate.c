@@ -83,7 +83,7 @@ char	**ft_readpc(int fd)
 	if ((board = ft_sizeboard(pc)) == NULL)
 		return (NULL);
 	ft_solver(&board, pcs);
-	while (pcs[k] != NULL)
+	// while (pcs[k] != NULL)
 	// {
 	// 	while (pcs[k][i] != NULL)
 	// 	{
@@ -98,19 +98,14 @@ char	**ft_readpc(int fd)
 	// 	else
 	// 		break;
 	// }
-
-	while (board[k])
-	{
-		printf("%s", board[k]);
-		printf("%c", '\n');
-		k++;
-	}
 	return (board);
 }
 
 int		main(int ac, char **av)
 {
 	int			fd;
+	int			k;
+	char		**sboard;
 
 	if (ac != 2)
 	{
@@ -118,10 +113,17 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	fd = open(av[1], O_RDONLY);
-	if (ft_readpc(fd) == NULL)
+	sboard = ft_readpc(fd);
+	if (sboard == NULL)
 	{
 		write(1, "error\n", 6);
 		return (0);
+	}
+	while (sboard[k])
+	{
+		printf("%s", sboard[k]);
+		printf("%c", '\n');
+		k++;
 	}
 //	 while (1);
 	// write(1, "valid\n", 6);

@@ -45,29 +45,34 @@ void	ft_putpc(char *****board, char **pc, int row, int col)
 
 int		ft_solveboard(char ****board, char ***pcs, int row, int col)
 {
-	if (ft_fitpc(board, *pcs, row, col))
+	if ((*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
 	{
-		printf("jotain hopinaa niulaini\n");
-		ft_putpc(&board, *pcs, row, col);
-		if (pcs + 1 == NULL)
-			return (0);
-		if (ft_solveboard(board, pcs + 1, row, col))
-			return (1);
+		printf("%d %d THE END\n", row, col);
+		return (0);
 	}
-	else if ((**board)[row][col + 1] != '\0')
+	if (((**board)[row] != NULL && ft_fitpc(board, *pcs, row, col)))
 	{
-		printf("merkki etiappai\n");
+		ft_putpc(&board, *pcs, row, col);
+		printf("%d %d pala\n", row, col);
+		if (ft_solveboard(board, pcs + 1, 0, 0))
+		{
+			return (1);
+		}
+		return (0);
+	}
+	else if ((**board)[row] != NULL && (**board)[row][col + 1] != '\0')
+	{
+		printf("%d %d merkki etiappai\n", row, col);
 		if (ft_solveboard(board, pcs, row, col + 1))
 			return (1);
 	}
-	// else if ((**board)[row][col + 1] == '\0')
-	// {
-		printf("rivi etiappai\n");
+	else if ((**board)[row] != NULL && (**board)[row][col + 1] == '\0')
+	{
+		printf("%d %d rivi etiappai\n", row, col);
 		if (ft_solveboard(board, pcs, row + 1, 0))
 			return (1);
-	// 	else
-	// 		**board = ft_sizeboard(0);
-	// }
+	}
+	printf("%d %d janna\n", row, col);
 	return (0);// isompi lauta
 }
 

@@ -4,21 +4,26 @@ void	ft_trimtopbot(char ***arr)
 {
 	int			row;
 	int			col;
+	int			k;
 
+
+	k = 3;
 	row = 0;
 	col = 0;
 	while ((*arr)[row])
 	{
 		while (!(ft_strchr((*arr)[row], '#')))
 		{
-			while ((*arr)[row])
+			while ((*arr)[row + 1] != NULL)
 			{
-				(*arr)[row] = (*arr)[row + 1];
+				(*arr)[row] = ft_strcpy((*arr)[row], (*arr)[row + 1]);
 				row++;
 			}
+			(*arr)[k] = NULL;
+			k--;
 			row = 0;
 		}
-		row++;
+		row++;	
 	}
 }
 
@@ -52,11 +57,13 @@ void	ft_trimsides(char ***arr)
 void	ft_trimpc(char *s, char ****pcs, int pc)
 {
 	char		**arr;
+	char 		*temp[1];
 	int			row;
 	int			i;
 
 	i = 0;
 	row = 0;
+	temp[0] = NULL;
 	arr = ft_strsplit(s, '\n');
 	while (row++ < 4)
 		ft_trimsides(&arr);
@@ -73,5 +80,8 @@ void	ft_trimpc(char *s, char ****pcs, int pc)
 		i = 0;
 		row++;
 	}
+//	while (1); vuotaa
 	(*pcs)[pc - 1] = arr;
+	(*pcs)[pc] = temp;
+//	while (1); //vuotaa
 }
