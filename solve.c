@@ -45,7 +45,9 @@ void	ft_putpc(char *****board, char **pc, int row, int col)
 
 int		ft_solveboard(char ****board, char ***pcs, int row, int col)
 {
-	if ((*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
+	// while ((**board)[row][col] != '.' && (**board)[row][col + 1] != '\0')
+	// 	col++;
+	if ((pcs[row]) == NULL)//(*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
 	{
 		printf("%d %d THE END\n", row, col);
 		return (0);
@@ -55,8 +57,18 @@ int		ft_solveboard(char ****board, char ***pcs, int row, int col)
 		ft_putpc(&board, *pcs, row, col);
 		printf("%d %d pala\n", row, col);
 		if (ft_solveboard(board, pcs + 1, 0, 0))
-		{
 			return (1);
+	}
+	else if ((**board)[row] == NULL && (**pcs) != NULL)
+	{
+		if ((ft_resizeboard(&board)))
+		{
+			printf("%d %d isompi lauta\n", row, col);
+			if (ft_solveboard(board, pcs, 0, 0))
+			{
+				printf("%d %d %s isompi lauta\n", row, col, (**board)[0]);
+				return (1);
+			}
 		}
 		return (0);
 	}
@@ -72,7 +84,7 @@ int		ft_solveboard(char ****board, char ***pcs, int row, int col)
 		if (ft_solveboard(board, pcs, row + 1, 0))
 			return (1);
 	}
-	printf("%d %d janna\n", row, col);
+	printf("%d %d %s janna\n", row, col, (**board)[row]);
 	return (0);// isompi lauta
 }
 
