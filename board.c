@@ -14,7 +14,7 @@ int		ft_resizeboard(char *****board)
 	while (i < w_and_h)
 	{
 		printf("%s %d %d uuslauta\n", (***board)[i], w_and_h, i);
-	//	free(***board[i]);
+		// free(***board[i]);
 		if (!(***board[i] = (char *)malloc((w_and_h + 1) * sizeof(char))))	
 			return (0);
 		i++;

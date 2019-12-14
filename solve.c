@@ -45,14 +45,14 @@ void	ft_putpc(char *****board, char **pc, int row, int col)
 
 int		ft_solveboard(char ****board, char ***pcs, int row, int col)
 {
-	// while ((**board)[row][col] != '.' && (**board)[row][col + 1] != '\0')
-	// 	col++;
-	if ((pcs[row]) == NULL)//(*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
+	while ((**board)[row][col] != '.' && (**board)[row][col + 1] != '\0')
+		col++;
+	if ((*pcs)[row] == NULL)//((*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
 	{
 		printf("%d %d THE END\n", row, col);
 		return (0);
 	}
-	if (((**board)[row] != NULL && ft_fitpc(board, *pcs, row, col)))
+	if ((**board)[row] != NULL && ft_fitpc(board, *pcs, row, col))
 	{
 		ft_putpc(&board, *pcs, row, col);
 		printf("%d %d pala\n", row, col);

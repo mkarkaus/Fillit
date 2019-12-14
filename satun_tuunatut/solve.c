@@ -52,7 +52,7 @@ int		ft_solveboard(char **board, char ***pcs, int row, int col)
 		//printf("%s %d %d kutsu\n", (board)[row], row, col);
 		while ((board)[row][col] != '.' && (board)[row][col + 1] != '\0')
 			col++;
-		if ((pcs[row]) == NULL)//(*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
+		if ((pcs[0]) == NULL)//(*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
 		{
 			printf("%d %d %s THE END\n", row, col, (board)[row]);
 			return (0);
@@ -60,7 +60,7 @@ int		ft_solveboard(char **board, char ***pcs, int row, int col)
 		if (((board)[row] != NULL) && (ft_fitpc(board, *pcs, row, col)))
 		{
 			ft_putpc(board, *pcs, row, col);
-			board = ft_sizeboard(board, 0); //toimii ja laajentaa, mutta printaa lopuksi vaaran,, on vaarassa paikassa
+			// board = ft_sizeboard(board, 0); //toimii ja laajentaa, mutta printaa lopuksi vaaran,, on vaarassa paikassa
 			printf("%d %d pala\n", row, col);
 			if (ft_solveboard(board, pcs + 1, 0, 0))
 				return (1);
