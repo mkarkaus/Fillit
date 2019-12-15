@@ -44,10 +44,10 @@ void	ft_putpc(char **board, char **pc, int row, int col)
 		k++;
 	}
 }
- 
+
 int		ft_solveboard(char **board, char ***pcs, int row, int col)
 {
-	// while ((board)[row] != NULL)
+	//while ((board)[row] != NULL)
 	// {
 		//printf("%s %d %d kutsu\n", (board)[row], row, col);
 		while ((board)[row][col] != '.' && (board)[row][col + 1] != '\0')
@@ -76,9 +76,7 @@ int		ft_solveboard(char **board, char ***pcs, int row, int col)
 			printf("%d %d rivi etiappai\n", row, col);
 			if (ft_solveboard(board, pcs, row + 1, 0))
 				return (1);
-		}
-	// }
-	if ((board)[row] == NULL && pcs)
+			if ((board)[row] == NULL && pcs)
 		{
 			printf("%d %d %s sis bigger\n", row, col, board[row]);
 			if ((board = ft_sizeboard(board, 0)))
@@ -86,10 +84,13 @@ int		ft_solveboard(char **board, char ***pcs, int row, int col)
 				printf("%d %d isompi lauta\n", row, col);
 				if (ft_solveboard(board, pcs, 0, 0))
 				{
-					printf("%d %d %s isompi lauta\n", row, col, (board)[0]);
 					return (1);
 				}
-			}
+			}	
+		}
+
+	// }
+	
 			return (0);
 		}
 	printf("%d %d %s janna\n", row, col, (board)[row]);
@@ -100,11 +101,9 @@ void	ft_solver(char **board, char ***pcs)
 {
 	int		row;
 	int		col;
-	int		i;
 
 	row = 0;
 	col = 0;
-	i = 0;
 	ft_solveboard(board, pcs, row, col);
 }
 

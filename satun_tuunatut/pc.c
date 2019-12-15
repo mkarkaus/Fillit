@@ -3,13 +3,11 @@
 void	ft_trimtopbot(char ***arr)
 {
 	int			row;
-	int			col;
 	int			k;
 
 
 	k = 3;
 	row = 0;
-	col = 0;
 	while ((*arr)[row])
 	{
 		while (!(ft_strchr((*arr)[row], '#')))
@@ -83,5 +81,6 @@ void	ft_trimpc(char *s, char ***pcs, int pc)
 //	while (1); vuotaa
 	(pcs)[pc - 1] = arr;
 	(pcs)[pc] = temp;
+	printf("%s", pcs[pc][0]);
 //	while (1); //vuotaa
 }

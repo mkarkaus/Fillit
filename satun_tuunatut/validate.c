@@ -55,6 +55,21 @@ int		ft_checkgrid(char *s)
 	return (0);
 }
 
+int		ft_memarrarr(char ***pcs, int pc)
+{
+	char ***temp;
+	
+	printf("laskuri\n");
+	if (!(temp = (char ***)malloc((pc + 1) * sizeof(char **))))
+		return (-1);
+	temp = (pcs);
+	free(pcs);
+	if (!((pcs) = (char ***)malloc(pc + 1 * sizeof(char **)))) //check that piece count still invalidates
+		return (-1);
+	(pcs) = temp;
+	return (0);
+}
+
 char	**ft_readpc(int fd)
 {
 	char			**board;
@@ -70,7 +85,7 @@ char	**ft_readpc(int fd)
 	ret = 0;
 	pc = 0;
 	board = NULL;
-	if (!(pcs = (char ***)malloc(27 * sizeof(char **))))
+	if (!(pcs = (char ***)malloc(27 * sizeof(char **)))) //miksi 5 ei riitä neljälle muistipaikalla ja nullille
 		return (NULL);
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
@@ -79,26 +94,28 @@ char	**ft_readpc(int fd)
 			return (NULL);
 		if (++pc > 26)
 			return (NULL);
+//		if ((ft_memarrarr(pcs, pc) == -1))
+//			return (NULL);
 		ft_trimpc(buff, pcs, pc);
 	}
 	if ((board = ft_sizeboard(board, pc)) == NULL)
 		return (NULL);
 	ft_solver(board, pcs);
-	// while (pcs[k] != NULL)
-	// {
-	// 	while (pcs[k][i] != NULL)
-	// 	{
-	// 		printf("%s", pcs[k][i]);
-	// 		printf("\n");
-	// 		i++;
-	// 	}
-	// 	i = 0;
-	// 	printf("\n");
-	// 	if (pcs[k + 1] != NULL)
-	// 		k++;
-	// 	else
-	// 		break;
-	// }
+	while (pcs[k] != NULL)
+	{
+		while (pcs[k][i] != NULL)
+		{
+			printf("%s", pcs[k][i]);
+			printf("\n");
+			i++;
+		}
+		i = 0;
+		printf("\n");
+		if (pcs[k + 1] != NULL)
+			k++;
+		else
+			break;
+	}
 	return (board);
 }
 
