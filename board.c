@@ -1,26 +1,31 @@
 #include "fillit.h"
 
-int		ft_resizeboard(char *****board)
+char	**ft_resizeboard(char *****board)
 {
-	// char	****board;
+	char	**newboard;
 	int		w_and_h;
 	int		i;
 
+	i = ft_strlen((***board)[0]);
+	w_and_h = ft_strlen((***board)[0]) + 1;
+	while (i <= 0)
+	{
+		free((***board)[i]);
+		i--;
+	}
 	i = 0;
-	w_and_h = ft_strlen(***board[0]) + 1;
-	// free(****board);
-	if (!(***board = (char **)malloc((w_and_h + 1) * sizeof(char *))))
-		return (0);
+	free((***board));
+	if (!(newboard = (char **)malloc((w_and_h + 1) * sizeof(char *))))
+		return (NULL);
 	while (i < w_and_h)
 	{
-		printf("%s %d %d uuslauta\n", (***board)[i], w_and_h, i);
-		// free(***board[i]);
-		if (!(***board[i] = (char *)malloc((w_and_h + 1) * sizeof(char))))	
-			return (0);
+		printf("%s %d %d uuslauta\n", (newboard)[i], w_and_h, i);
+		if (!(newboard[i] = (char *)malloc((w_and_h + 1) * sizeof(char))))	
+			return (NULL);
 		i++;
 	}
-	ft_fill_board((**board), w_and_h);
-	return (1);
+	ft_fill_board((&newboard), w_and_h);
+	return (newboard);
 }
 
 void	ft_fill_board(char ***board, int w_and_h)

@@ -57,13 +57,11 @@ void	ft_trimsides(char ***arr)
 void	ft_trimpc(char *s, char ****pcs, int pc)
 {
 	char		**arr;
-	char 		*temp[1];
 	int			row;
 	int			i;
 
 	i = 0;
 	row = 0;
-	temp[0] = NULL;
 	arr = ft_strsplit(s, '\n');
 	while (row++ < 4)
 		ft_trimsides(&arr);
@@ -82,6 +80,6 @@ void	ft_trimpc(char *s, char ****pcs, int pc)
 	}
 //	while (1); vuotaa
 	(*pcs)[pc - 1] = arr;
-	(*pcs)[pc] = temp;
+	(*pcs)[pc] = NULL;
 //	while (1); //vuotaa
 }
