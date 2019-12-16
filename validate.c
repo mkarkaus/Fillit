@@ -58,7 +58,7 @@ int		ft_checkgrid(char *s)
 char	**ft_readpc(int fd)
 {
 	char			**board;
-	static char		***pcs;
+	struct piece	p;
 	ssize_t 		ret;
 	int				pc;
 	char 			buff[BUFF_SIZE + 1];
@@ -69,7 +69,8 @@ char	**ft_readpc(int fd)
 	k = 0;
 	ret = 0;
 	pc = 0;
-	if (!(pcs = (char ***)malloc(27 * sizeof(char **))))
+	p.i = 0;
+	if (!(p.pcs = (char ***)malloc(27 * sizeof(char **))))
 		return (NULL);
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
@@ -78,11 +79,11 @@ char	**ft_readpc(int fd)
 			return (NULL);
 		if (++pc > 26)
 			return (NULL);
-		ft_trimpc(buff, &pcs, pc);
+		ft_trimpc(buff, p, pc);
 	}
 	if ((board = ft_sizeboard(pc)) == NULL)
 		return (NULL);
-	ft_solver(&board, pcs);
+	ft_solver(&board, p);
 	// while (pcs[k] != NULL)
 	// {
 	// 	while (pcs[k][i] != NULL)
@@ -107,6 +108,7 @@ int		main(int ac, char **av)
 	int			k;
 	char		**sboard;
 
+	k = 0;
 	if (ac != 2)
 	{
 		write (1, "usage: fillit input_file\n", 26);

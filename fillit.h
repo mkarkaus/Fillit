@@ -8,13 +8,15 @@
 # include <string.h>
 # include <stdio.h>
 
-// Struct piece
-// {
-// 	char **pcs;
-// }
-int				ft_solveboard(char ****board, char ***pcs, int row, int col);
-void			ft_solver(char ***board, char ***pcs);
-void			ft_trimpc(char *s, char ****pcs, int pc);
+static struct piece
+{
+	char	***pcs;
+	int			i;
+} 				p;
+
+int				ft_solveboard(char ****board, struct piece p, int row, int col);
+void			ft_solver(char ***board, struct piece p);
+void			ft_trimpc(char *s, struct piece p, int pc);
 int				ft_checkgrid(char *s);
 int				ft_checkpc(char *s);
 char			**ft_readpc(int fd);
