@@ -2,13 +2,13 @@
 
 int		ft_resizeboard(char *****board)
 {
-	//char	****board;
+	// char	****board;
 	int		w_and_h;
 	int		i;
 
 	i = 0;
 	w_and_h = ft_strlen(***board[0]) + 1;
-	free(****board);
+	// free(****board);
 	if (!(***board = (char **)malloc((w_and_h + 1) * sizeof(char *))))
 		return (0);
 	while (i < w_and_h)

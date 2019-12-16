@@ -9,7 +9,7 @@ int		ft_fitpc(char ****board, char **pcs, int row, int col)
 
 	i = 0;
 	k = 0;
-	while (pcs[k])
+	while (pcs[k] && (**board)[row + k])
 	{
 		while (pcs[k][i] != '\0')
 		{
@@ -18,8 +18,13 @@ int		ft_fitpc(char ****board, char **pcs, int row, int col)
 			i++;
 		}
 		i = 0;
-		k++;
+		if (pcs[k + 1] != NULL && (**board)[row + k] != NULL)
+			k++;
+		else
+			break;
 	}
+	if (pcs[k] && (**board)[row + k] == NULL)
+		return (0);
 	return (1);
 }
 
@@ -45,9 +50,9 @@ void	ft_putpc(char *****board, char **pc, int row, int col)
 
 int		ft_solveboard(char ****board, char ***pcs, int row, int col)
 {
-	while ((**board)[row][col] != '.' && (**board)[row][col + 1] != '\0')
-		col++;
-	if ((*pcs)[row] == NULL)//((*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
+	// while ((**board)[row][col] != '.' && (**board)[row][col + 1] != '\0')
+	// 	col++;
+	if ((*pcs)[0] == NULL)//((*pcs)[0][0] != '.' && !((*pcs)[0][0] >= 'A' && (*pcs)[0][0] <= 'Z'))
 	{
 		printf("%d %d THE END\n", row, col);
 		return (0);
@@ -56,14 +61,21 @@ int		ft_solveboard(char ****board, char ***pcs, int row, int col)
 	{
 		ft_putpc(&board, *pcs, row, col);
 		printf("%d %d pala\n", row, col);
+		row = 0;
+		while ((**board)[row] != NULL)
+		{
+			printf("%s", (**board)[row]);
+			printf("\n");
+			row++;
+		}
 		if (ft_solveboard(board, pcs + 1, 0, 0))
 			return (1);
 	}
 	else if ((**board)[row] == NULL && (**pcs) != NULL)
 	{
+		printf("%d %d isompi lauta\n", row, col);
 		if ((ft_resizeboard(&board)))
 		{
-			printf("%d %d isompi lauta\n", row, col);
 			if (ft_solveboard(board, pcs, 0, 0))
 			{
 				printf("%d %d %s isompi lauta\n", row, col, (**board)[0]);
