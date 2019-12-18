@@ -70,7 +70,6 @@ char	**ft_readpc(int fd)
 		return (NULL);
 	while ((ret = read(fd, buff, BUFF_SIZE)))
 	{
-		
 		buff[ret] = '\0';
 		if (ft_checkgrid(buff) == -1)
 			return (NULL);
@@ -78,9 +77,7 @@ char	**ft_readpc(int fd)
 			return (NULL);
 		ft_trimpc(buff, p, pc);
 	}
-	if (buff[20] == '\n' || buff[0] == '\0')
-		return (NULL);
-	if ((board = ft_sizeboard(pc)) == NULL)
+	if (buff[20] == '\n' || buff[0] == '\0' || (board = ft_sizeboard(pc)) == NULL)
 		return (NULL);
 	ft_solver(&board, p);
 	return (board);
