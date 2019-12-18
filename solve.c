@@ -11,6 +11,7 @@ int		ft_fitpc(char ****board, char **pcs, int row, int col)
 	k = 0;
 	while (pcs[k] && (**board)[row + k])
 	{
+		
 		while (pcs[k][i] != '\0')
 		{
 			if (pcs[k][i] != '.' && (**board)[row + k][col + i] != '.')
@@ -26,6 +27,30 @@ int		ft_fitpc(char ****board, char **pcs, int row, int col)
 	if (pcs[k] && (**board)[row + k] == NULL)
 		return (0);
 	return (1);
+}
+
+void	ft_removepcs(char *****board, char **pc, int row, int col)
+{
+	int		i;
+	int		k;
+
+	i = 0;
+	k = 0;
+	while (pc[k])
+	{
+		//printf("[%d][%d]\n", k, i);
+		while (pc[k][i] != '\0')
+		{
+			if (pc[k][i] == (***board)[row + k][col + i])
+			{
+				(***board)[row + k][col + i] = '.';
+			}	
+			i++;
+		}
+		i = 0;
+		k++;
+	}
+	//printf("\n");
 }
 
 void	ft_putpc(char *****board, char **pc, int row, int col)
@@ -48,61 +73,63 @@ void	ft_putpc(char *****board, char **pc, int row, int col)
 	}
 }
 
+void ft_print(char ****board)
+{
+	int row;			
+	row = 0;
+	while ((**board)[row] != NULL)
+	{
+	printf(YEL"%s\n"RESET, (**board)[row]);
+	row++;
+	}
+	printf("\n");
+}
+
 int		ft_solveboard(char ****board, struct piece p, int row, int col)
 {
-	// printf("%s ", p.pcs[p.i][0]);
 	if (!(p.pcs[p.i]))
 		return (1);
-	if ((**board)[row] != NULL)
+	//while (p.pcs[p.i] && )
+	else if ((**board)[row] != NULL)
 	{
 		if ((ft_fitpc(board, p.pcs[p.i], row, col)))
 		{
+			ft_print(board);
+			//printf(BLU" before: PC*%d* [%d][%d] = %c\n " RESET, p.i, row, col, (**board)[row][col]);
 			ft_putpc(&board, p.pcs[p.i], row, col);
-			printf("%d %d pala\n", row, col);
-			row = 0;
-			while ((**board)[row] != NULL)
-			{
-				printf("%s\n", (**board)[row]);
-				row++;
-			}
+			ft_print(board);
+			//printf(GRN" after: PC*%d* [%d][%d] = %c\n " RESET, p.i, row, col, (**board)[row][col]);
 			p.i++;
 			if (ft_solveboard(board, p, 0, 0))
 				return (1);
+			else
+		{
+			p.i--;
+		//printf(YEL" before: PC*%d* [%d][%d] = %c\n " RESET, p.i, row, col, (**board)[row][col]);
+			ft_removepcs(&board, p.pcs[p.i], row, col);
+			if (ft_solveboard(board, p, row, col + 1))
+				return (1);
+			// printf(MAG" before: PC*%d* [%d][%d] = %c\n " RESET, p.i, row, col, (**board)[row][col]);
+			// printf("hello2\n");
+		}
+				
+			//ft_putpc(&board, p.pcs[p.i], row, col);
 		}
 		else if ((**board)[row][col + 1] != '\0')
 		{
-			printf("%d %d merkki etiappai\n", row, col);
 			if (ft_solveboard(board, p, row, col + 1))
 				return (1);
-		}
+		}	
 		else if ((**board)[row][col + 1] == '\0')
-		{
-			printf("%d %d rivi etiappai\n", row, col);
 			if (ft_solveboard(board, p, row + 1, 0))
 				return (1);
-		}
 	}
-	else if ((**board)[row] == NULL && p.pcs[p.i][0] != NULL) //tahan backtrack
-	{
-	// 	col++;
-	//  	ft_solveboard(board, p, 0, col);
-	//  		return (1);
+	//else if ((**board)[row] == NULL && p.pcs[p.i][0] != NULL) //tahan backtrack
+	// {
+	// // 	col++;
+	// //  	ft_solveboard(board, p, 0, col);
+	// //  		return (1);
 	// }
-
-
-	// {	
-		// if (((**board) = ft_resizeboard(&board)) != NULL)
-		// {
-		// 	p.i = 0;
-		// 	if (ft_solveboard(board, p, 0, 0))// here pcs should go to 0
-		// 	{
-		// 		printf("%d %d %s isompi lauta\n", row, col, (**board)[0]);
-		// 		return (1);
-		// 	}
-		// }
-	 	// return (0);
-	}
-	// printf("%d %d %s janna\n", row, col, (**board)[row]);
 	return (0);// isompi lauta
 }
 
