@@ -67,6 +67,7 @@ void	ft_putpc(char *****board, char **pc, int row, int col)
 	}
 }
 
+
 int		ft_solveboard(char ****board, struct piece p, int row, int col)
 {
 	if (!(p.pcs[p.i]))
@@ -83,7 +84,7 @@ int		ft_solveboard(char ****board, struct piece p, int row, int col)
 			{
 				p.i--;
 				ft_removepc(&board, p.pcs[p.i], row, col);
-				if (ft_solveboard(board, p, row, col + 1))
+					if (ft_solveboard(board, p, row, col + 1))
 					return (1);
 			}
 		}
@@ -91,12 +92,12 @@ int		ft_solveboard(char ****board, struct piece p, int row, int col)
 		{
 			if (ft_solveboard(board, p, row, col + 1))
 				return (1);
-		}	
+		}
 		else if ((**board)[row][col + 1] == '\0')
 			if (ft_solveboard(board, p, row + 1, 0))
 				return (1);
 	}
-	return (0);// isompi lauta
+	return (0);
 }
 
 void	ft_solver(char ***board, struct piece p)

@@ -8,7 +8,7 @@ char	**ft_resizeboard(char ****board)
 
 	i = ft_strlen((**board)[0]);
 	w_and_h = ft_strlen((**board)[0]) + 1;
-	while (i <= 0)
+	while (i >= 0)
 	{
 		free((**board)[i]);
 		i--;
@@ -19,7 +19,6 @@ char	**ft_resizeboard(char ****board)
 		return (NULL);
 	while (i < w_and_h)
 	{
-		printf("%s %d %d uuslauta\n", (newboard)[i], w_and_h, i);
 		if (!(newboard[i] = (char *)malloc((w_and_h + 1) * sizeof(char))))	
 			return (NULL);
 		i++;
@@ -58,15 +57,10 @@ char	**ft_sizeboard(int pc)
 
 	board = NULL;
 	i = 0;
-	if (board)
-		w_and_h = ft_strlen(board[0]) + 1;
-	else
-	{
-		w_and_h = 2;
-		numblock = pc * 4;
-		while (w_and_h * w_and_h < numblock)
-			w_and_h++;
-	}
+	w_and_h = 2;
+	numblock = pc * 4;
+	while (w_and_h * w_and_h < numblock)
+		w_and_h++;
 	if (!(board = (char **)malloc((w_and_h + 1) * sizeof(char *))))
 		return (NULL);
 	while (i < w_and_h)

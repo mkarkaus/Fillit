@@ -14,7 +14,7 @@ static struct piece
 	int			i;
 } 				p;
 
-void		ft_removepcs(char *****board, char **pc, int row, int col);
+void			ft_removepc(char *****board, char **pc, int row, int col);
 int				ft_solveboard(char ****board, struct piece p, int row, int col);
 void			ft_solver(char ***board, struct piece p);
 void			ft_trimpc(char *s, struct piece p, int pc);
