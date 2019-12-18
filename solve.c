@@ -52,10 +52,10 @@ int		ft_solveboard(char ****board, struct piece p, int row, int col)
 {
 	// printf("%s ", p.pcs[p.i][0]);
 	if (!(p.pcs[p.i]))
-		return (0);
+		return (1);
 	if ((**board)[row] != NULL)
 	{
-		if (ft_fitpc(board, p.pcs[p.i], row, col))
+		if ((ft_fitpc(board, p.pcs[p.i], row, col)))
 		{
 			ft_putpc(&board, p.pcs[p.i], row, col);
 			printf("%d %d pala\n", row, col);
@@ -71,7 +71,7 @@ int		ft_solveboard(char ****board, struct piece p, int row, int col)
 		}
 		else if ((**board)[row][col + 1] != '\0')
 		{
-		printf("%d %d merkki etiappai\n", row, col);
+			printf("%d %d merkki etiappai\n", row, col);
 			if (ft_solveboard(board, p, row, col + 1))
 				return (1);
 		}
@@ -82,25 +82,27 @@ int		ft_solveboard(char ****board, struct piece p, int row, int col)
 				return (1);
 		}
 	}
-	else if ((**board)[row] == NULL && p.pcs[p.i][0] != NULL)
-	// {
+	else if ((**board)[row] == NULL && p.pcs[p.i][0] != NULL) //tahan backtrack
+	{
 	// 	col++;
-	// 	ft_solveboard(board, p, 0, col);
-	// 		return (1);
+	//  	ft_solveboard(board, p, 0, col);
+	//  		return (1);
 	// }
-	{	
-		if (((**board) = ft_resizeboard(&board)) != NULL)
-		{
-			p.i = 0;
-			if (ft_solveboard(board, p, 0, 0))// here pcs should go to 0
-			{
-				printf("%d %d %s isompi lauta\n", row, col, (**board)[0]);
-				return (1);
-			}
-		}
-		return (0);
+
+
+	// {	
+		// if (((**board) = ft_resizeboard(&board)) != NULL)
+		// {
+		// 	p.i = 0;
+		// 	if (ft_solveboard(board, p, 0, 0))// here pcs should go to 0
+		// 	{
+		// 		printf("%d %d %s isompi lauta\n", row, col, (**board)[0]);
+		// 		return (1);
+		// 	}
+		// }
+	 	// return (0);
 	}
-	printf("%d %d %s janna\n", row, col, (**board)[row]);
+	// printf("%d %d %s janna\n", row, col, (**board)[row]);
 	return (0);// isompi lauta
 }
 
@@ -108,12 +110,11 @@ void	ft_solver(char ***board, struct piece p)
 {
 	int		row;
 	int		col;
-	int		i;
 
 	row = 0;
 	col = 0;
-	i = 0;
-	ft_solveboard(&board, p, row, col);
+	while(!(ft_solveboard(&board, p, row, col)))
+		(*board) = ft_resizeboard(&board);
 }
 
 // int		solveboard(int **board, int row, int col)
@@ -143,86 +144,4 @@ void	ft_solver(char ***board, struct piece p)
 // 		number++;
 // 	}
 // 	return (0);
-// }
-
-// miikan kakkakoodi
-//        |
-//        V
-// 
-// void	ft_wipeboard(char ****board, int *row, int *col, int pc)
-// {
-// 	int		row2;
-// 	int		col2;
-
-// 	row2 = 0;
-// 	col2 = 0;
-// 	while ((**board)[row2])
-// 	{
-// 		while ((**board)[row2][col2] != '\0')
-// 		{
-// 			if ((**board)[row2][col2] == 'A' + pc)
-// 				(**board)[row2][col2] = '.';
-// 			col2++;
-// 		}
-// 		col2 = 0;
-// 		row2++;
-// 	}
-// }
-
-// // void	ft_fitpiece(char ****board, char ***pcs, int pc)
-// // {
-
-// // }
-// void	ft_solver(char ***board, char ***pcs)
-// {
-// 	int		i;
-// 	int		k;
-// 	int		row;
-// 	int		col;
-// 	int		pc;
-
-// 	i = 0;
-// 	k = 0;
-// 	pc = 0;
-// 	row = 0;
-// 	col = 0;
-// 	while (pcs[pc] != NULL) //menee niin kauan kun paloja on
-// 	{
-// 		while (pcs[pc][k]) // menee niin kauan kun palassa on riveja
-// 		{
-// 			while (pcs[pc][k][i] != '\0' && (*board)[row]) // menee niin kauan kun rivissa on merkkeja ja laudassa on riveja
-// 			{
-// 				if ((*board)[row + k][col + i] == '.')
-// 					(*board)[row + k][col + i] = pcs[pc][k][i];
-// 				else if ((*board)[row + k][col + i] != '.') //&& (*board)[row + k][col + i] != '\0') //&& pcs[pc][k][i] != '.') // (same as only "else")
-// 				{
-// 					while ((*board)[row][col] != '.')
-// 					{	
-// 						if ((*board)[row][col + 1] != '\0')
-// 							col++;
-// 						else if ((*board)[row][col + 1] == '\0' && (*board)[row + 1] != NULL)
-// 						{
-// 							row++;
-// 							col = 0;
-// 						}
-// 						k = 0;
-// 						i = -1;
-// 					}
-// 				 	ft_wipeboard(&board, &row, &col, pc);					
-// 				}
-// 				i++;
-// 			}
-// 			i = 0;
-// 			k++;
-// 		}
-// 		k = 0;
-// 		if ((*board)[row][col + 1] != '\0')
-// 			col++;
-// 		else
-// 		{
-// 			row++;
-// 			col = 0;
-// 		}
-// 		pc++;
-// 	}
 // }

@@ -20,7 +20,7 @@ void			ft_trimpc(char *s, struct piece p, int pc);
 int				ft_checkgrid(char *s);
 int				ft_checkpc(char *s);
 char			**ft_readpc(int fd);
-char			**ft_resizeboard(char *****board);
+char			**ft_resizeboard(char ****board);
 char			**ft_sizeboard(int pc);
 void			ft_fill_board(char ***board, int w_and_h);
 
