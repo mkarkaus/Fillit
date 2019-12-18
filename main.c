@@ -9,7 +9,7 @@ int		main(int ac, char **av)
 	k = 0;
 	if (ac != 2)
 	{
-		write (1, "usage: fillit input_file\n", 26);
+		write(1, "usage: fillit input_file\n", 26);
 		return (0);
 	}
 	fd = open(av[1], O_RDONLY);
@@ -25,7 +25,5 @@ int		main(int ac, char **av)
 			ft_putendl(sboard[k]);
 			k++;
 		}
-//	 while (1);
-//	while (1); TESTAA VUODOT TAI VAIHTOEHTOISESTI KAYTA system(leaks fillit);
 	return (0);
 }

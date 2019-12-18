@@ -19,7 +19,7 @@ char	**ft_resizeboard(char ****board)
 		return (NULL);
 	while (i < w_and_h)
 	{
-		if (!(newboard[i] = (char *)malloc((w_and_h + 1) * sizeof(char))))	
+		if (!(newboard[i] = (char *)malloc((w_and_h + 1) * sizeof(char))))
 			return (NULL);
 		i++;
 	}
@@ -65,7 +65,7 @@ char	**ft_sizeboard(int pc)
 		return (NULL);
 	while (i < w_and_h)
 	{
-		if (!(board[i] = (char *)malloc((w_and_h + 1) * sizeof(char))))	
+		if (!(board[i] = (char *)malloc((w_and_h + 1) * sizeof(char))))
 			return (NULL);
 		i++;
 	}

@@ -39,7 +39,7 @@ int		ft_checkgrid(char *s)
 	i = 0;
 	h = 0;
 	d = 0;
-	while (s[i] != '\0' && (s[i] == '.' || s[i] == '#' || s[i] == '\n'))	//check that all chars are allowed
+	while (s[i] != '\0' && (s[i] == '.' || s[i] == '#' || s[i] == '\n'))
 	{
 		if (s[i] == '.')
 			d++;
@@ -59,9 +59,9 @@ char	**ft_readpc(int fd)
 {
 	char			**board;
 	struct piece	p;
-	ssize_t 		ret;
+	ssize_t			ret;
 	int				pc;
-	char 			buff[BUFF_SIZE + 1];
+	char			buff[BUFF_SIZE + 1];
 
 	ret = 0;
 	pc = 0;
@@ -84,6 +84,6 @@ char	**ft_readpc(int fd)
 }
 
 // system function in stdlib system(leaks fillit);
-
 // All your sources and headers must be in the same folder. You can have
 // two different folders, one for the libft and one for fillit.
+//	system(leaks fillit);
