@@ -1,4 +1,3 @@
-
 #include "fillit.h"
 
 int		ft_checkpc(char *s)
@@ -47,8 +46,8 @@ int		ft_checkgrid(char *s)
 			h++;
 		i++;
 	}
-	if (h != 4 || d != 12 || s[4] != '\n' || s[9] != '\n' || s[14] != '\n' || 
-			s[19] != '\n' || (s[20] != '\n' && s[20] != '\0'))
+	if (h != 4 || d != 12 || s[4] != '\n' || s[9] != '\n' || s[14] != '\n' \
+	|| s[19] != '\n' || (s[20] != '\n' && s[20] != '\0'))
 		return (-1);
 	if (ft_checkpc(s) == -1)
 		return (-1);
@@ -57,7 +56,7 @@ int		ft_checkgrid(char *s)
 
 char	**ft_readpc(int fd)
 {
-	char			**board;
+	char			**b;
 	struct piece	p;
 	ssize_t			ret;
 	int				pc;
@@ -77,13 +76,8 @@ char	**ft_readpc(int fd)
 			return (NULL);
 		ft_trimpc(buff, p, pc);
 	}
-	if (buff[20] == '\n' || buff[0] == '\0' || (board = ft_sizeboard(pc)) == NULL)
+	if (buff[20] == '\n' || buff[0] == '\0' || (b = ft_sizeboard(pc)) == NULL)
 		return (NULL);
-	ft_solver(&board, p);
-	return (board);
+	ft_solver(&b, p);
+	return (b);
 }
-
-// system function in stdlib system(leaks fillit);
-// All your sources and headers must be in the same folder. You can have
-// two different folders, one for the libft and one for fillit.
-//	system(leaks fillit);
