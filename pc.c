@@ -6,7 +6,6 @@ void	ft_trimtopbot(char ***arr)
 	int			col;
 	int			k;
 
-
 	k = 3;
 	row = 0;
 	col = 0;
@@ -23,7 +22,7 @@ void	ft_trimtopbot(char ***arr)
 			k--;
 			row = 0;
 		}
-		row++;	
+		row++;
 	}
 }
 
@@ -36,10 +35,10 @@ void	ft_trimsides(char ***arr)
 	temp = 0;
 	row = 0;
 	col = 0;
-	while ((*arr)[0][col] == '#' || (*arr)[1][col] == '#' || (*arr)[2][col] == '#'  || (*arr)[3][col] == '#')
+	while ((*arr)[0][col] == '#' || (*arr)[1][col] == '#'\
+		|| (*arr)[2][col] == '#' || (*arr)[3][col] == '#')
 		col++;
 	if ((*arr)[0][col] != '\0')
-	{
 		while ((*arr)[row])
 		{
 			temp = col;
@@ -51,7 +50,6 @@ void	ft_trimsides(char ***arr)
 			col = temp;
 			row++;
 		}
-	}
 }
 
 void	ft_trimpc(char *s, struct piece p, int pc)
