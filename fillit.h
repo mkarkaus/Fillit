@@ -5,6 +5,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 
 static struct	s_piece
 {
@@ -12,9 +13,13 @@ static struct	s_piece
 	int		i;
 }				p;
 
+void			ft_trim_sides(char ***arr);
+void			ft_trim_top_bot(char ***arr);
+void			ft_put_pc(char *****brd, char **pc, int row, int col);
+int				ft_fit_pc(char ****brd, char **pcs, int row, int col);
 void			ft_remove_pc(char *****brd, char **pc, int row, int col);
 int				ft_solve_brd(char ****brd, struct s_piece p, int y, int x);
-void			ft_solver(char ***brd, struct s_piece p);
+void			ft_solver(char ***brd, struct s_piece p, int pc);
 void			ft_trim_pc(char *s, struct s_piece p, int pc);
 int				ft_check_grid(char *s);
 int				ft_check_pc(char *s);

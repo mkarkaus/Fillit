@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: mkarkaus <mkarkaus@student.hive.fi>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2019/12/19 13:16:35 by mkarkaus          #+#    #+#             */
+/*   Updated: 2019/12/19 13:16:38 by mkarkaus         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fillit.h"
 
 int		main(int ac, char **av)
@@ -13,7 +25,7 @@ int		main(int ac, char **av)
 		return (0);
 	}
 	fd = open(av[1], O_RDONLY);
-	sboard = ft_readpc(fd);
+	sboard = ft_read_pc(fd);
 	if (sboard == NULL)
 	{
 		write(1, "error\n", 6);

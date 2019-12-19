@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-void	ft_trimtopbot(char ***arr)
+void	ft_trim_top_bot(char ***arr)
 {
 	int			row;
 	int			col;
@@ -18,6 +18,7 @@ void	ft_trimtopbot(char ***arr)
 				(*arr)[row] = ft_strcpy((*arr)[row], (*arr)[row + 1]);
 				row++;
 			}
+			free((*arr)[k]);
 			(*arr)[k] = NULL;
 			k--;
 			row = 0;
@@ -26,7 +27,7 @@ void	ft_trimtopbot(char ***arr)
 	}
 }
 
-void	ft_trimsides(char ***arr)
+void	ft_trim_sides(char ***arr)
 {
 	int			row;
 	int			col;
@@ -52,7 +53,7 @@ void	ft_trimsides(char ***arr)
 		}
 }
 
-void	ft_trimpc(char *s, struct piece p, int pc)
+void	ft_trim_pc(char *s, struct s_piece p, int pc)
 {
 	char		**arr;
 	int			row;
@@ -62,8 +63,8 @@ void	ft_trimpc(char *s, struct piece p, int pc)
 	row = 0;
 	arr = ft_strsplit(s, '\n');
 	while (row++ < 4)
-		ft_trimsides(&arr);
-	ft_trimtopbot(&arr);
+		ft_trim_sides(&arr);
+	ft_trim_top_bot(&arr);
 	row = 0;
 	while (arr[row])
 	{
@@ -76,8 +77,6 @@ void	ft_trimpc(char *s, struct piece p, int pc)
 		i = 0;
 		row++;
 	}
-//	while (1); vuotaa
 	(p.pcs)[pc - 1] = arr;
 	(p.pcs)[pc] = NULL;
-//	while (1); //vuotaa
 }

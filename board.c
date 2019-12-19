@@ -1,6 +1,6 @@
 #include "fillit.h"
 
-char	**ft_resizeboard(char ****board)
+char	**ft_resize_board(char ****board)
 {
 	char	**newboard;
 	int		w_and_h;
@@ -48,7 +48,7 @@ void	ft_fill_board(char ***board, int w_and_h)
 	(*board)[row] = NULL;
 }
 
-char	**ft_sizeboard(int pc)
+char	**ft_size_board(int pc)
 {
 	char	**board;
 	int		w_and_h;
