@@ -12,21 +12,21 @@
 
 #include "fillit.h"
 
-char	**ft_resize_board(char ****board)
+char	**ft_resize_board(char ***board)
 {
 	char	**newboard;
 	int		w_and_h;
 	int		i;
 
-	i = ft_strlen((**board)[0]);
-	w_and_h = ft_strlen((**board)[0]) + 1;
+	i = ft_strlen((*board)[0]);
+	w_and_h = ft_strlen((*board)[0]) + 1;
 	while (i >= 0)
 	{
-		free((**board)[i]);
+		free((*board)[i]);
 		i--;
 	}
 	i = 0;
-	free((**board));
+	free((*board));
 	if (!(newboard = (char **)malloc((w_and_h + 1) * sizeof(char *))))
 		return (NULL);
 	while (i < w_and_h)
