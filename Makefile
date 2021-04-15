@@ -3,16 +3,18 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sreijola <sreijola@student.hive.fi>        +#+  +:+       +#+         #
+#    By: mkarkaus <mkarkaus@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/12/19 17:36:20 by sreijola          #+#    #+#              #
-#    Updated: 2019/12/19 17:36:53 by sreijola         ###   ########.fr        #
+#    Updated: 2021/04/15 15:31:04 by mkarkaus         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fillit
 
-SRCS = main.c validate.c pc.c board.c solve.c
+SRCS_FILES = main.c validate.c pc.c board.c solve.c
+SRCS_PATH = ./srcs/
+SRCS = $(addprefix $(SRCS_PATH), $(SRCS_FILES))
 
 LIB = libft/libft.a
 
@@ -24,7 +26,7 @@ all: $(NAME)
 
 $(NAME):
 	@make -C libft
-	@$(GCC) $(SRCS) $(FLAGS) $(LIB) -o $(NAME)
+	@$(GCC) $(FLAGS) $(SRCS) $(LIB) -o $(NAME)
 	@echo "Library and fillit made"
 
 clean:
